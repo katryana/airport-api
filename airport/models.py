@@ -22,7 +22,7 @@ class Flight(models.Model):
         return f"{int(hours):02d}:{int(minutes):02d}"
 
     def __str__(self):
-        return f"{self.departure_time} - {self.arrival_time}"
+        return f"{self.airplane.name} ({self.route.source.closest_big_city} - {self.route.destination.closest_big_city})"
 
     class Meta:
         ordering = ["departure_time", ]
@@ -75,7 +75,7 @@ class Airplane(models.Model):
         return self.rows * self.seats_in_row
 
     def __str__(self):
-        return self.airplane_type.name + " " + self.name
+        return self.name
 
     class Meta:
         ordering = ["name", ]
@@ -143,6 +143,11 @@ class Ticket(models.Model):
             force_insert, force_update, using, update_fields
         )
 
+    def __str__(self):
+        return (
+            f"{self.flight.departure_time.strftime('%d/%m/%Y %H:%M')} (row: {self.row}, seat: {self.seat})"
+        )
+
     class Meta:
         ordering = ["row", "seat"]
         unique_together = ("flight", "row", "seat")
@@ -155,7 +160,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return str(self.created_at)
+        return self.created_at.strftime('%d/%m/%Y %H:%M')
 
     class Meta:
         ordering = ["-created_at"]
