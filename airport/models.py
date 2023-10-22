@@ -22,7 +22,10 @@ class Flight(models.Model):
         return f"{int(hours):02d}:{int(minutes):02d}"
 
     def __str__(self):
-        return f"{self.airplane.name} ({self.route.source.closest_big_city} - {self.route.destination.closest_big_city})"
+        return (
+            f"{self.airplane.name} ({self.route.source.closest_big_city} "
+            f"- {self.route.destination.closest_big_city})"
+        )
 
     class Meta:
         ordering = ["departure_time", ]
@@ -145,7 +148,8 @@ class Ticket(models.Model):
 
     def __str__(self):
         return (
-            f"{self.flight.departure_time.strftime('%d/%m/%Y %H:%M')} (row: {self.row}, seat: {self.seat})"
+            f"{self.flight.departure_time.strftime('%d/%m/%Y %H:%M')} "
+            f"(row: {self.row}, seat: {self.seat})"
         )
 
     class Meta:
