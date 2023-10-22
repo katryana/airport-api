@@ -12,7 +12,7 @@ class Flight(models.Model):
     airplane = models.ForeignKey(
         "Airplane", on_delete=models.CASCADE, related_name="flights"
     )
-    crews = models.ManyToManyField("Crew", related_name="flights")
+    crews = models.ManyToManyField("Crew", related_name="flights", blank=True)
 
     @property
     def duration(self) -> str:
@@ -21,6 +21,38 @@ class Flight(models.Model):
         minutes = remainder // 60
         return f"{int(hours):02d}:{int(minutes):02d}"
 
+    def save(self, *args, **kwargs):
+        """
+        Define a method for not assigning the same crew and airplane
+        to different flights at the same time
+        """
+
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+        for crew in self.crews.all():
+            conflicting_flights = Flight.objects.filter(
+                crews=crew,
+                departure_time__lt=self.arrival_time,
+                arrival_time__gt=self.departure_time,
+            ).exclude(pk=self.pk)
+
+            if conflicting_flights.exists():
+                raise ValidationError(
+                    f"Crew \"{crew}\" is already assigned to another flight at the same time."
+                )
+
+        conflicting_airplanes = Flight.objects.filter(
+            airplane=self.airplane,
+            departure_time__lt=self.arrival_time,
+            arrival_time__gt=self.departure_time,
+        ).exclude(pk=self.pk)
+
+        if conflicting_airplanes.exists():
+            raise ValidationError(
+                f"The airplane \"{self.airplane}\" is already scheduled for another flight at the same time."
+            )
+
     def __str__(self):
         return (
             f"{self.airplane.name} ({self.route.source.closest_big_city} "
@@ -28,7 +60,9 @@ class Flight(models.Model):
         )
 
     class Meta:
-        ordering = ["departure_time", ]
+        ordering = [
+            "departure_time",
+        ]
 
 
 class Route(models.Model):
@@ -45,12 +79,23 @@ class Route(models.Model):
 
     def clean(self):
         if self.source == self.destination:
-            raise ValidationError(
-                "Source and destination airports cannot be the same."
-            )
+            raise ValidationError("Source and destination airports cannot be the same.")
+
+    def save(
+        self,
+        force_insert=False,
+        force_update=False,
+        using=None,
+        update_fields=None,
+    ):
+        self.full_clean()
+        return super().save(force_insert, force_update, using, update_fields)
 
     class Meta:
-        ordering = ["source", "destination", ]
+        ordering = [
+            "source",
+            "destination",
+        ]
 
 
 class Airport(models.Model):
@@ -61,8 +106,13 @@ class Airport(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["name", ]
-        unique_together = ("name", "closest_big_city", )
+        ordering = [
+            "name",
+        ]
+        unique_together = (
+            "name",
+            "closest_big_city",
+        )
 
 
 class Airplane(models.Model):
@@ -81,7 +131,9 @@ class Airplane(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["name", ]
+        ordering = [
+            "name",
+        ]
 
 
 class AirplaneType(models.Model):
@@ -105,9 +157,7 @@ class Ticket(models.Model):
     flight = models.ForeignKey(
         "Flight", on_delete=models.CASCADE, related_name="tickets"
     )
-    order = models.ForeignKey(
-        "Order", on_delete=models.CASCADE, related_name="tickets"
-    )
+    order = models.ForeignKey("Order", on_delete=models.CASCADE, related_name="tickets")
 
     @staticmethod
     def validate_ticket(row, seat, airplane, error_to_raise):
@@ -142,9 +192,7 @@ class Ticket(models.Model):
         update_fields=None,
     ):
         self.full_clean()
-        return super(Ticket, self).save(
-            force_insert, force_update, using, update_fields
-        )
+        return super().save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return (
@@ -159,12 +207,10 @@ class Ticket(models.Model):
 
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.created_at.strftime('%d/%m/%Y %H:%M')
+        return self.created_at.strftime("%d/%m/%Y %H:%M")
 
     class Meta:
         ordering = ["-created_at"]

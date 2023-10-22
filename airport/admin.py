@@ -62,6 +62,13 @@ class FlightAdmin(admin.ModelAdmin):
         "arrival_time",
     ]
 
+    def get_form(self, request, obj=None, **kwargs):
+        if obj is None:
+            self.exclude = ("crews", )
+        else:
+            self.exclude = None
+        return super().get_form(request, obj, **kwargs)
+
 
 class TicketInline(admin.TabularInline):
     model = Ticket
