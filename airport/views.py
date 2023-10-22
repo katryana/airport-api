@@ -1,3 +1,4 @@
+from django.db.models import F, Count
 from rest_framework import viewsets
 
 from airport.models import (
@@ -64,7 +65,15 @@ class CrewViewSet(viewsets.ModelViewSet):
 
 
 class FlightViewSet(viewsets.ModelViewSet):
-    queryset = Flight.objects.all()
+    queryset = (
+        Flight.objects.select_related("route", "airplane")
+        .annotate(
+            seats_available=(
+                F("airplane__rows") * F("airplane__seats_in_row")
+                - Count("tickets")
+            )
+        )
+    )
     serializer_class = FlightSerializer
 
     def get_serializer_class(self):

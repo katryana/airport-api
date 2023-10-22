@@ -119,6 +119,23 @@ class FlightSerializer(serializers.ModelSerializer):
 class FlightListSerializer(FlightSerializer):
     route = serializers.StringRelatedField(many=False, read_only=True)
     airplane = serializers.StringRelatedField(many=False, read_only=True)
+    airplane_capacity = serializers.IntegerField(
+        source="airplane.capacity", read_only=True
+    )
+    seats_available = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Flight
+        fields = (
+            "id",
+            "departure_time",
+            "arrival_time",
+            "duration",
+            "route",
+            "airplane",
+            "airplane_capacity",
+            "seats_available",
+        )
 
 
 class TicketDetailSerializer(TicketSerializer):
