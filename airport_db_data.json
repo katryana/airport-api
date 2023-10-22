@@ -1,0 +1,463 @@
+[
+  {
+    "model": "user.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$Jck7opoa9HeYWyesdjfQxo$pu6DPuIYFujvwkcM7y5B4Rf3mCK7IPDzqxEh4qN7E5o=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": true,
+      "email": "admin@airport.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "mykola.hmara@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "ivan.khripko@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "olga.shevchenko@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "michael.johnson@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "anna.smith@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "linda.wilson@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "david.wilson@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "natalie.brown@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "user.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "last_login": "2023-10-22T00:00:00Z",
+      "is_superuser": false,
+      "email": "james.anderson@airport.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2023-10-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "airport.order",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-10-22T10:15:00Z",
+      "user": 2
+    }
+  },
+  {
+    "model": "airport.order",
+    "pk": 2,
+    "fields": {
+      "created_at": "2023-10-22T10:30:00Z",
+      "user": 3
+    }
+  },
+  {
+    "model": "airport.order",
+    "pk": 3,
+    "fields": {
+      "created_at": "2023-10-22T10:45:00Z",
+      "user": 4
+    }
+  },
+  {
+    "model": "airport.order",
+    "pk": 4,
+    "fields": {
+      "created_at": "2023-10-22T11:00:00Z",
+      "user": 5
+    }
+  },
+  {
+    "model": "airport.order",
+    "pk": 5,
+    "fields": {
+      "created_at": "2023-10-22T11:15:00Z",
+      "user": 6
+    }
+  },
+  {
+    "model": "airport.ticket",
+    "pk": 1,
+    "fields": {
+      "row": 1,
+      "seat": 1,
+      "flight": 1,
+      "order": 1
+    }
+  },
+  {
+    "model": "airport.ticket",
+    "pk": 2,
+    "fields": {
+      "row": 1,
+      "seat": 2,
+      "flight": 1,
+      "order": 2
+    }
+  },
+  {
+    "model": "airport.ticket",
+    "pk": 3,
+    "fields": {
+      "row": 2,
+      "seat": 1,
+      "flight": 2,
+      "order": 3
+    }
+  },
+  {
+    "model": "airport.ticket",
+    "pk": 4,
+    "fields": {
+      "row": 2,
+      "seat": 2,
+      "flight": 2,
+      "order": 4
+    }
+  },
+  {
+    "model": "airport.ticket",
+    "pk": 5,
+    "fields": {
+      "row": 3,
+      "seat": 1,
+      "flight": 3,
+      "order": 5
+    }
+  },
+  {
+    "model": "airport.ticket",
+    "pk": 6,
+    "fields": {
+      "row": 3,
+      "seat": 2,
+      "flight": 3,
+      "order": 1
+    }
+  },
+  {
+    "model": "airport.airport",
+    "pk": 1,
+    "fields": {
+      "name": "New York International Airport",
+      "closest_big_city": "New York City"
+    }
+  },
+  {
+    "model": "airport.airport",
+    "pk": 2,
+    "fields": {
+      "name": "Los Angeles International Airport",
+      "closest_big_city": "Los Angeles"
+    }
+  },
+  {
+    "model": "airport.airport",
+    "pk": 3,
+    "fields": {
+      "name": "Chicago O'Hare International Airport",
+      "closest_big_city": "Chicago"
+    }
+  },
+  {
+    "model": "airport.airplane",
+    "pk": 1,
+    "fields": {
+      "name": "Boeing 747",
+      "rows": 10,
+      "seats_in_row": 6,
+      "airplane_type": 1
+    }
+  },
+  {
+    "model": "airport.airplane",
+    "pk": 2,
+    "fields": {
+      "name": "Airbus A320",
+      "rows": 8,
+      "seats_in_row": 4,
+      "airplane_type": 2
+    }
+  },
+  {
+    "model": "airport.airplane",
+    "pk": 3,
+    "fields": {
+      "name": "Boeing 787",
+      "rows": 12,
+      "seats_in_row": 7,
+      "airplane_type": 1
+    }
+  },
+  {
+    "model": "airport.airplane",
+    "pk": 4,
+    "fields": {
+      "name": "Airbus A380",
+      "rows": 6,
+      "seats_in_row": 5,
+      "airplane_type": 3
+    }
+  },
+  {
+    "model": "airport.airplane",
+    "pk": 5,
+    "fields": {
+      "name": "Embraer E175",
+      "rows": 14,
+      "seats_in_row": 8,
+      "airplane_type": 1
+    }
+  },
+  {
+    "model": "airport.airplanetype",
+    "pk": 1,
+    "fields": {
+      "name": "Commercial"
+    }
+  },
+  {
+    "model": "airport.airplanetype",
+    "pk": 2,
+    "fields": {
+      "name": "Regional"
+    }
+  },
+  {
+    "model": "airport.airplanetype",
+    "pk": 3,
+    "fields": {
+      "name": "Private"
+    }
+  },
+  {
+    "model": "airport.flight",
+    "pk": 1,
+    "fields": {
+      "departure_time": "2023-10-22T10:00:00Z",
+      "arrival_time": "2023-10-22T12:00:00Z",
+      "route": 1,
+      "airplane": 1,
+      "crews": [1, 2, 3]
+    }
+  },
+  {
+    "model": "airport.flight",
+    "pk": 2,
+    "fields": {
+      "departure_time": "2023-10-23T08:00:00Z",
+      "arrival_time": "2023-10-23T10:00:00Z",
+      "route": 2,
+      "airplane": 2,
+      "crews": [4, 5]
+    }
+  },
+  {
+    "model": "airport.flight",
+    "pk": 3,
+    "fields": {
+      "departure_time": "2023-10-24T14:00:00Z",
+      "arrival_time": "2023-10-24T16:00:00Z",
+      "route": 3,
+      "airplane": 3,
+      "crews": [6, 7]
+    }
+  },
+  {
+    "model": "airport.flight",
+    "pk": 4,
+    "fields": {
+      "departure_time": "2023-10-25T12:00:00Z",
+      "arrival_time": "2023-10-25T14:00:00Z",
+      "route": 4,
+      "airplane": 4,
+      "crews": [1, 2, 3]
+    }
+  },
+  {
+    "model": "airport.route",
+    "pk": 1,
+    "fields": {
+      "distance": 500,
+      "source": 1,
+      "destination": 2
+    }
+  },
+  {
+    "model": "airport.route",
+    "pk": 2,
+    "fields": {
+      "distance": 600,
+      "source": 2,
+      "destination": 3
+    }
+  },
+  {
+    "model": "airport.route",
+    "pk": 3,
+    "fields": {
+      "distance": 700,
+      "source": 3,
+      "destination": 1
+    }
+  },
+  {
+    "model": "airport.route",
+    "pk": 4,
+    "fields": {
+      "distance": 800,
+      "source": 1,
+      "destination": 3
+    }
+  },
+  {
+    "model": "airport.crew",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Smith"
+    }
+  },
+  {
+    "model": "airport.crew",
+    "pk": 2,
+    "fields": {
+      "first_name": "Emily",
+      "last_name": "Johnson"
+    }
+  },
+  {
+    "model": "airport.crew",
+    "pk": 3,
+    "fields": {
+      "first_name": "William",
+      "last_name": "Davis"
+    }
+  },
+  {
+    "model": "airport.crew",
+    "pk": 4,
+    "fields": {
+      "first_name": "Sophia",
+      "last_name": "Miller"
+    }
+  },
+  {
+    "model": "airport.crew",
+    "pk": 5,
+    "fields": {
+      "first_name": "James",
+      "last_name": "Wilson"
+    }
+  },
+  {
+    "model": "airport.crew",
+    "pk": 6,
+    "fields": {
+      "first_name": "Linda",
+      "last_name": "Martin"
+    }
+  },
+  {
+    "model": "airport.crew",
+    "pk": 7,
+    "fields": {
+      "first_name": "Michael",
+      "last_name": "Brown"
+    }
+  }
+]
