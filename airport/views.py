@@ -216,7 +216,6 @@ class RouteViewSet(viewsets.ModelViewSet):
         "source", "destination"
     )
     serializer_class = RouteSerializer
-    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAdminUserOrReadOnly, )
 
     def get_serializer_class(self):
