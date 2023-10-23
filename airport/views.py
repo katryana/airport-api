@@ -231,7 +231,7 @@ class RouteViewSet(
         "source", "destination"
     )
     serializer_class = RouteSerializer
-    permission_classes = (IsAdminUserOrReadOnly, )
+    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
 
     def get_serializer_class(self):
 
