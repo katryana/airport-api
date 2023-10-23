@@ -156,7 +156,6 @@ class FlightListSerializer(FlightSerializer):
 
 class TicketDetailSerializer(TicketSerializer):
     flight = FlightListSerializer()
-    order = serializers.StringRelatedField(many=False, read_only=True)
 
 
 class OrderDetailSerializer(OrderSerializer):
