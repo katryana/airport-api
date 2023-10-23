@@ -1,4 +1,5 @@
 from django.db.models import F, Count
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, status, mixins
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
@@ -167,6 +168,23 @@ class FlightViewSet(viewsets.ModelViewSet):
 
         return self.serializer_class
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "departure_date",
+                type={"type": "date"},
+                description="Filter by departure date (ex. ?departure_date=2024-10-08)"
+            ),
+            OpenApiParameter(
+                "arrival_date",
+                type={"type": "date"},
+                description="Filter by arrival date (ex. ?arrival_date=2024-10-08)"
+            )
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 class OrderPagination(PageNumberPagination):
     page_size = 10
@@ -239,3 +257,20 @@ class RouteViewSet(
             queryset = queryset.filter(destination__name__icontains=destination)
 
         return queryset
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "source",
+                type={"type": "str"},
+                description="Filter by source (ex. ?source=chicago)"
+            ),
+            OpenApiParameter(
+                "destination",
+                type={"type": "str"},
+                description="Filter by destination (ex. ?destination=chicago)"
+            )
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
