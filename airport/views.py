@@ -126,7 +126,7 @@ class CrewViewSet(viewsets.ModelViewSet):
 
 class FlightViewSet(viewsets.ModelViewSet):
     queryset = Flight.objects.select_related(
-        "route__source", "route__destination", "airplane"
+        "route", "airplane"
     ).prefetch_related("tickets")
     serializer_class = FlightSerializer
     permission_classes = (IsAdminUserOrReadOnly, )
@@ -135,8 +135,6 @@ class FlightViewSet(viewsets.ModelViewSet):
         """Retrieve the flights with filters"""
         departure_date = self.request.query_params.get("departure_date")
         arrival_date = self.request.query_params.get("arrival_date")
-        source = self.request.query_params.get("source")
-        destination = self.request.query_params.get("destination")
 
         queryset = self.queryset
 
@@ -145,12 +143,6 @@ class FlightViewSet(viewsets.ModelViewSet):
 
         if arrival_date:
             queryset = queryset.filter(arrival_time__date=arrival_date)
-
-        if source:
-            queryset = queryset.filter(route__source__name__icontains=source)
-
-        if destination:
-            queryset = queryset.filter(route__destination__name__icontains=destination)
 
         if self.action == "list":
             queryset = queryset.annotate(
@@ -211,7 +203,12 @@ class OrderViewSet(
         serializer.save(user=self.request.user)
 
 
-class RouteViewSet(viewsets.ModelViewSet):
+class RouteViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    viewsets.GenericViewSet
+):
     queryset = Route.objects.select_related(
         "source", "destination"
     )
@@ -227,3 +224,18 @@ class RouteViewSet(viewsets.ModelViewSet):
             return RouteDetailSerializer
 
         return self.serializer_class
+
+    def get_queryset(self):
+        """Retrieve the routes with filters"""
+        source = self.request.query_params.get("source")
+        destination = self.request.query_params.get("destination")
+
+        queryset = self.queryset
+
+        if source:
+            queryset = queryset.filter(source__name__icontains=source)
+
+        if destination:
+            queryset = queryset.filter(destination__name__icontains=destination)
+
+        return queryset
