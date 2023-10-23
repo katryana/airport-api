@@ -21,38 +21,6 @@ class Flight(models.Model):
         minutes = remainder // 60
         return f"{int(hours):02d}:{int(minutes):02d}"
 
-    def save(self, *args, **kwargs):
-        """
-        Define a method for not assigning the same crew and airplane
-        to different flights at the same time
-        """
-
-        self.full_clean()
-        super().save(*args, **kwargs)
-
-        for crew in self.crews.all():
-            conflicting_flights = Flight.objects.filter(
-                crews=crew,
-                departure_time__lt=self.arrival_time,
-                arrival_time__gt=self.departure_time,
-            ).exclude(pk=self.pk)
-
-            if conflicting_flights.exists():
-                raise ValidationError(
-                    f"Crew \"{crew}\" is already assigned to another flight at the same time."
-                )
-
-        conflicting_airplanes = Flight.objects.filter(
-            airplane=self.airplane,
-            departure_time__lt=self.arrival_time,
-            arrival_time__gt=self.departure_time,
-        ).exclude(pk=self.pk)
-
-        if conflicting_airplanes.exists():
-            raise ValidationError(
-                f"The airplane \"{self.airplane}\" is already scheduled for another flight at the same time."
-            )
-
     def __str__(self):
         return (
             f"{self.airplane.name} ({self.route.source.closest_big_city} "
@@ -79,7 +47,9 @@ class Route(models.Model):
 
     def clean(self):
         if self.source == self.destination:
-            raise ValidationError("Source and destination airports cannot be the same.")
+            raise ValidationError(
+                "Source and destination airports cannot be the same."
+            )
 
     def save(
         self,
@@ -157,7 +127,9 @@ class Ticket(models.Model):
     flight = models.ForeignKey(
         "Flight", on_delete=models.CASCADE, related_name="tickets"
     )
-    order = models.ForeignKey("Order", on_delete=models.CASCADE, related_name="tickets")
+    order = models.ForeignKey(
+        "Order", on_delete=models.CASCADE, related_name="tickets"
+    )
 
     @staticmethod
     def validate_ticket(row, seat, airplane, error_to_raise):
@@ -207,7 +179,9 @@ class Ticket(models.Model):
 
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.created_at.strftime("%d/%m/%Y %H:%M")
