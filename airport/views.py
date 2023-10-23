@@ -1,6 +1,7 @@
 from django.db.models import F, Count
 from rest_framework import viewsets, status, mixins
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -49,7 +50,6 @@ class AirplaneViewSet(
 ):
     queryset = Airplane.objects.select_related("airplane_type")
     serializer_class = AirplaneSerializer
-    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
 
     def get_serializer_class(self):
@@ -97,15 +97,13 @@ class AirplaneTypeViewSet(
 class AirportViewSet(viewsets.ModelViewSet):
     queryset = Airport.objects.all()
     serializer_class = AirportSerializer
-    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAdminUserOrReadOnly, )
 
 
 class CrewViewSet(viewsets.ModelViewSet):
     queryset = Crew.objects.all()
     serializer_class = CrewSerializer
-    authentication_classes = (JWTAuthentication, )
-    permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
+    permission_classes = (IsAdminUser, )
 
     def get_serializer_class(self):
 
@@ -131,7 +129,6 @@ class FlightViewSet(viewsets.ModelViewSet):
         "route", "airplane"
     )
     serializer_class = FlightSerializer
-    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAdminUserOrReadOnly, )
 
     def get_queryset(self):
@@ -184,6 +181,11 @@ class FlightViewSet(viewsets.ModelViewSet):
         return queryset
 
 
+class OrderPagination(PageNumberPagination):
+    page_size = 10
+    max_page_size = 100
+
+
 class OrderViewSet(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
@@ -194,7 +196,7 @@ class OrderViewSet(
         "tickets__flight__airplane", "tickets__flight__route"
     )
     serializer_class = OrderSerializer
-    authentication_classes = (JWTAuthentication, )
+    pagination_class = OrderPagination
     permission_classes = (IsAuthenticated, )
 
     def get_queryset(self):
