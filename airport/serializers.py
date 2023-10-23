@@ -41,7 +41,7 @@ class AirplaneListSerializer(AirplaneSerializer):
 
 
 class AirplaneDetailSerializer(AirplaneSerializer):
-    airplane_type = AirplaneType(many=False, read_only=True)
+    airplane_type = AirplaneTypeSerializer(many=False, read_only=True)
 
     class Meta:
         model = Airplane
