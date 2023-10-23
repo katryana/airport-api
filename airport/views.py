@@ -134,6 +134,29 @@ class FlightViewSet(viewsets.ModelViewSet):
     authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAdminUserOrReadOnly, )
 
+    def get_queryset(self):
+        """Retrieve the flights with filters"""
+        departure_date = self.request.query_params.get("departure_date")
+        arrival_date = self.request.query_params.get("arrival_date")
+        source = self.request.query_params.get("source")
+        destination = self.request.query_params.get("destination")
+
+        queryset = self.queryset
+
+        if departure_date:
+            queryset = queryset.filter(departure_time__date=departure_date)
+
+        if arrival_date:
+            queryset = queryset.filter(arrival_time__date=arrival_date)
+
+        if source:
+            queryset = queryset.filter(route__source__name__icontains=source)
+
+        if destination:
+            queryset = queryset.filter(route__destination__name__icontains=destination)
+
+        return queryset.distinct()
+
     def get_serializer_class(self):
 
         if self.action == "list":
