@@ -159,6 +159,7 @@ class FlightDetailSerializer(FlightSerializer):
     taken_seats = TicketSeatsSerializer(
         source="tickets", many=True, read_only=True
     )
+    crews = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Flight
@@ -170,10 +171,17 @@ class FlightDetailSerializer(FlightSerializer):
             "route",
             "airplane",
             "taken_seats",
+            "crews",
         )
 
 
 class CrewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Crew
+        fields = ("id", "first_name", "last_name")
+
+
+class CrewListSerializer(serializers.ModelSerializer):
     flights = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
@@ -183,3 +191,7 @@ class CrewSerializer(serializers.ModelSerializer):
 
 class CrewDetailSerializer(CrewSerializer):
     flights = FlightSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Crew
+        fields = ("id", "first_name", "last_name", "flights")
