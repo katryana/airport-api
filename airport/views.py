@@ -1,5 +1,5 @@
 from django.db.models import F, Count
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics, mixins
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
@@ -40,7 +40,13 @@ from user.permissions import (
 )
 
 
-class AirplaneViewSet(viewsets.ModelViewSet):
+class AirplaneViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    viewsets.GenericViewSet
+):
     queryset = Airplane.objects.select_related("airplane_type")
     serializer_class = AirplaneSerializer
     authentication_classes = (JWTAuthentication, )
@@ -77,7 +83,11 @@ class AirplaneViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class AirplaneTypeViewSet(viewsets.ModelViewSet):
+class AirplaneTypeViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet
+):
     queryset = AirplaneType.objects.all()
     serializer_class = AirplaneTypeSerializer
     authentication_classes = (JWTAuthentication, )
@@ -151,7 +161,12 @@ class FlightViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class OrderViewSet(viewsets.ModelViewSet):
+class OrderViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    viewsets.GenericViewSet,
+):
     queryset = Order.objects.prefetch_related(
         "tickets__flight__airplane", "tickets__flight__route"
     )
