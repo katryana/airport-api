@@ -126,8 +126,8 @@ class CrewViewSet(viewsets.ModelViewSet):
 
 class FlightViewSet(viewsets.ModelViewSet):
     queryset = Flight.objects.select_related(
-        "route", "airplane"
-    )
+        "route__source", "route__destination", "airplane"
+    ).prefetch_related("tickets")
     serializer_class = FlightSerializer
     permission_classes = (IsAdminUserOrReadOnly, )
 
@@ -152,6 +152,17 @@ class FlightViewSet(viewsets.ModelViewSet):
         if destination:
             queryset = queryset.filter(route__destination__name__icontains=destination)
 
+        if self.action == "list":
+            queryset = queryset.annotate(
+                seats_available=(
+                        F("airplane__rows") * F("airplane__seats_in_row")
+                        - Count("tickets")
+                )
+            )
+
+        if self.action == "retrieve":
+            queryset = queryset.prefetch_related("crews")
+
         return queryset.distinct()
 
     def get_serializer_class(self):
@@ -163,22 +174,6 @@ class FlightViewSet(viewsets.ModelViewSet):
             return FlightDetailSerializer
 
         return self.serializer_class
-
-    def get_queryset(self):
-        queryset = self.queryset
-
-        if self.action == "list":
-            queryset = queryset.annotate(
-                seats_available=(
-                    F("airplane__rows") * F("airplane__seats_in_row")
-                    - Count("tickets")
-                )
-            )
-
-        if self.action == "retrieve":
-            queryset = queryset.prefetch_related("crews")
-
-        return queryset
 
 
 class OrderPagination(PageNumberPagination):
