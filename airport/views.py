@@ -9,7 +9,6 @@ from airport.models import (
     Flight,
     Order,
     Route,
-    Ticket,
 )
 
 from airport.serializers import (
@@ -18,6 +17,7 @@ from airport.serializers import (
     AirplaneTypeSerializer,
     AirportSerializer,
     CrewSerializer,
+    CrewListSerializer,
     CrewDetailSerializer,
     FlightSerializer,
     FlightListSerializer,
@@ -28,9 +28,6 @@ from airport.serializers import (
     RouteSerializer,
     RouteListSerializer,
     RouteDetailSerializer,
-    TicketSerializer,
-    TicketListSerializer,
-    TicketDetailSerializer, CrewListSerializer,
 )
 
 
