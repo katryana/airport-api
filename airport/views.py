@@ -31,7 +31,9 @@ from airport.serializers import (
     RouteListSerializer,
     RouteDetailSerializer,
 )
-from user.permissions import IsAdminOrIfAuthenticatedReadOnly, IsAdminUserOrReadOnly
+from user.permissions import (
+    IsAdminOrIfAuthenticatedReadOnly, IsAdminUserOrReadOnly
+)
 
 
 class AirplaneViewSet(viewsets.ModelViewSet):
