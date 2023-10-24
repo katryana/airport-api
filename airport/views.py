@@ -148,8 +148,9 @@ class FlightViewSet(viewsets.ModelViewSet):
         if self.action == "list":
             queryset = queryset.annotate(
                 seats_available=(
-                        F("airplane__rows") * F("airplane__seats_in_row")
-                        - Count("tickets")
+                    F("airplane__rows")
+                    * F("airplane__seats_in_row")
+                    - Count("tickets")
                 )
             )
 
@@ -173,12 +174,14 @@ class FlightViewSet(viewsets.ModelViewSet):
             OpenApiParameter(
                 "departure_date",
                 type={"type": "date"},
-                description="Filter by departure date (ex. ?departure_date=2024-10-08)"
+                description="Filter by departure date "
+                            "(ex. ?departure_date=2024-10-08)"
             ),
             OpenApiParameter(
                 "arrival_date",
                 type={"type": "date"},
-                description="Filter by arrival date (ex. ?arrival_date=2024-10-08)"
+                description="Filter by arrival date "
+                            "(ex. ?arrival_date=2024-10-08)"
             )
         ]
     )
@@ -254,7 +257,9 @@ class RouteViewSet(
             queryset = queryset.filter(source__name__icontains=source)
 
         if destination:
-            queryset = queryset.filter(destination__name__icontains=destination)
+            queryset = queryset.filter(
+                destination__name__icontains=destination
+            )
 
         return queryset
 
