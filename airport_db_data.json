@@ -16,11 +16,11 @@
     "model": "user.user",
     "pk": 2,
     "fields": {
-      "password": "pbkdf2_sha256$216000$oAG6qBbVjSNk$M/W2xwIVI9GX6zvFf9JZ0bPnncbajz2enmBDcvy5MuU=",
+      "password": "pbkdf2_sha256$600000$ztQqPCXtYFdYwiJjmYpHEf$dzRKl1+PDD5o/jfBvIu6H5898+pKDEJXqnvX5wFYYNU=",
       "last_login": "2023-10-22T00:00:00Z",
-      "is_superuser": false,
-      "email": "mykola.hmara@airport.com",
-      "is_staff": false,
+      "is_superuser": true,
+      "email": "staff@airport.com",
+      "is_staff": true,
       "is_active": true,
       "date_joined": "2023-10-22T00:00:00Z"
     }

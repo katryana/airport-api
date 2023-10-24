@@ -91,7 +91,6 @@ class AirplaneTypeViewSet(
 ):
     queryset = AirplaneType.objects.all()
     serializer_class = AirplaneTypeSerializer
-    authentication_classes = (JWTAuthentication, )
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly, )
 
 
