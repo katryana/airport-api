@@ -61,3 +61,4 @@ Admin User can:
 
 Here you can find images of some pages
 
+![flight_page](https://github.com/katryana/airport-api/assets/136272476/f4210b63-345e-4431-954e-2facf6ecf323)
