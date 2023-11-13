@@ -76,4 +76,3 @@ Here you can find images of list of some endpoints
 ![airport_endpoint_1.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_1.png)
 ![airport_endpoint_2.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_2.png)
 ![airport_endpoint_3.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_3.png)
-
