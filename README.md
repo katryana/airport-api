@@ -59,6 +59,9 @@ Admin User can:
 
 ## Demo
 
-Here you can find images of some pages
+Here you can find images of list of some endpoints
 
-![flight_page](https://github.com/katryana/airport-api/assets/136272476/f4210b63-345e-4431-954e-2facf6ecf323)
+![airport_endpoint_1.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_1.png)
+![airport_endpoint_2.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_2.png)
+![airport_endpoint_3.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_3.png)
+
