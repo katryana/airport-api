@@ -78,9 +78,7 @@ Admin User can:
 ## Demo
 
 Here you can find images of list of some endpoints
+![airport_endpoint_1](https://github.com/katryana/airport-api/assets/136272476/e6394e42-edf1-445f-852b-e2ee362e4d0b)
+![airport_endpoint_3](https://github.com/katryana/airport-api/assets/136272476/40ae6dac-6751-4434-8c81-a2fa4c484a63)
+![airport_endpoint_2](https://github.com/katryana/airport-api/assets/136272476/e6c701ca-916f-4f35-99a2-74a86271cfbe)
 
-![airport_endpoint_1.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_1.png)
-
-![airport_endpoint_2.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_2.png)
-
-![airport_endpoint_3.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_3.png)
