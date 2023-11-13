@@ -33,6 +33,13 @@ python manage.py migrate
 ```shell
 python manage.py runserver
 ```
+### Installing using Docker
+Ensure Docker is installed. Follow these steps:
+
+```shell
+docker-compose build
+docker-compose up
+```
 
 ## Filling out the data
 
