@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 A step by step series of examples that tell you how to get a development env running
 
 ### Installing using GitHub
-Python3 must be already installed
+Ensure Python 3.7+ is installed. Follow these steps:
 
 ```shell
 git clone https://github.com/katryana/airport-api
@@ -19,6 +19,18 @@ python -m venv venv
 venv\Scripts\activate (on Windows)
 source venv/bin/activate (on macOS)
 pip install -r requirements.txt
+```
+You should:
+* Create a .env file in the project root, similar to .env.sample, and fill in your data.
+* Initialize and run migrations:
+
+```shell
+python manage.py makemigrations
+python manage.py migrate
+```
+* Run server:
+
+```shell
 python manage.py runserver
 ```
 
