@@ -22,10 +22,9 @@ pip install -r requirements.txt
 ```
 You should:
 * Create a .env file in the project root, similar to .env.sample, and fill in your data.
-* Initialize and run migrations:
+* Apply migrations:
 
 ```shell
-python manage.py makemigrations
 python manage.py migrate
 ```
 * Run server:
@@ -81,5 +80,7 @@ Admin User can:
 Here you can find images of list of some endpoints
 
 ![airport_endpoint_1.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_1.png)
+
 ![airport_endpoint_2.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_2.png)
+
 ![airport_endpoint_3.png](..%2F..%2FPictures%2FScreenshots%2Fairport_endpoint_3.png)
